@@ -1,4 +1,4 @@
-name: Build APK
+name: Build APK Bamba
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,8 +18,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+      # Cette étape va générer le gradlew manquant directement sur le serveur GitHub
+      - name: Force Generate Gradle Wrapper
+        run: gradle wrapper
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
@@ -31,5 +31,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: BambaERP-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: BambaERP-Final
+          path: "**/build/outputs/apk/debug/*.apk"
