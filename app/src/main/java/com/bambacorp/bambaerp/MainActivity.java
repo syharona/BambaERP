@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
 
         // 8. Handle deep link from notification tap
         String url = getIntent().getStringExtra("url");
-        webView.loadUrl(url != null ? url : "https://crm.bambacorporation.com/");
+        webView.loadUrl(url != null ? url : "https://crm.bambacorporation.com/odoo/discuss");
     }
 
     @Override
